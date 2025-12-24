@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@plugin './hero.js';
+/* Note: You may need to change the path to fit your project structure */
+@source '../node_modules/@heroui/theme/dist/**/*.{js,jsx}';
+@custom-variant dark (&:is(.dark *));
+
+
+body{
+    /* background: black; */
+}
+/* body::after{
+
+    content: 'after';
+    position: absolute;
+    top:10%;
+    left: 10%;
+    background: linear-gradient(#252525,#fffef5);
+
+    width: 90%;
+    height: 500px;
+    z-index: 1;
+    border-radius: 0px 50px 20px 100px;
+    filter: blur(150px);
+
+} */
+
