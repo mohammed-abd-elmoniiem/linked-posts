@@ -15,7 +15,7 @@ export default function MainLayout(){
         <>
 
         <main className={`${mode?'dark':''} `}>
-            <div className="flex flex-col justify-between min-h-screen bg-neutral-100 dark:bg-black">
+            <div className="flex flex-col justify-between min-h-screen bg-neutral-100 dark:bg-neutral-950">
                 <NavBar setMode = {setMode} mode={mode}/>
 
 
