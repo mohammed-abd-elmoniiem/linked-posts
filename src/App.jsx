@@ -10,6 +10,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Profile from './components/Profile';
 import { RouterProvider } from 'react-router';
+import UserProvider from './context/userContext';
 
 
 const routers = createBrowserRouter([
@@ -38,9 +39,12 @@ function App() {
 
 
   return (<>
-    <HeroUIProvider>
+  <UserProvider>
+      <HeroUIProvider>
      <RouterProvider router={routers} />
     </HeroUIProvider>
+  </UserProvider>
+  
 
 
     </>

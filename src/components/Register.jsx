@@ -7,10 +7,22 @@ import {zodResolver} from '@hookform/resolvers/zod'
 import { registerSchema } from "../services/registerSchema";
 import { useForm } from 'react-hook-form'
 import { signUp } from "../services/signUp";
+import { useState } from "react";
+import { useNavigate,Link } from "react-router";
+import { use } from "react";
+import axios from "axios";
 
 
 
 export default function Register() {
+
+    const [isLoading , setIsLoading] = useState(false);
+    const navigator = useNavigate();
+    const [serverMessage, setServerMessage] = useState(false)
+    const [returnState, setReturnState] = useState(false);
+
+
+
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues:{
@@ -29,7 +41,23 @@ export default function Register() {
     async function submitting(data) {
 
         console.log(data);
-        console.log(await signUp(data));    
+        setIsLoading(true);
+        await axios.post('https://linked-posts.routemisr.com/users/signup', data)
+        .then(data=>{
+            console.log(data.data.message)
+            setServerMessage(data.data.message)
+            setTimeout(()=>{
+               navigator('/login')  
+            },2000)
+            setIsLoading(false);
+            setReturnState(true);
+
+        }).catch(error => {
+            console.log(error.response.data.error)
+            setIsLoading(false);
+            setServerMessage(error.response.data.error);
+            setReturnState(false);
+        });
 
     }
 
@@ -44,7 +72,7 @@ export default function Register() {
 
 
 
-                    <form className="w-full rounded-2xl  z-2 p-4   flex flex-col justify-center gap-2 max-w-100  bg-[#ffffff] dark:bg-neutral-900 drop-shadow-lg  border border-white dark:border-0 text-black dark:text-white"
+                    <form className="w-full rounded-2xl  z-2 p-4   flex flex-col justify-center items-center gap-2 max-w-100  bg-[#ffffff] dark:bg-neutral-900 drop-shadow-lg  border border-white dark:border-0 text-black dark:text-white"
                         onSubmit={handleSubmit(submitting)}
 
                     >
@@ -88,7 +116,7 @@ export default function Register() {
 
                         />
 
-                        <div className="flex  gap-3 ">
+                        <div className="flex  gap-3 w-full ">
 
                             <Input
                             {...register("dateOfBirth")}
@@ -114,10 +142,23 @@ export default function Register() {
 
                         </div>
 
+                        <div className="flex flex-col w-full items-center  gap-2">
+                             <Button isLoading={isLoading} type="submit" variant="shadow" className="w-fit bg-black not-last: text-white dark:bg-white dark:text-black  px-8 " color="black">
+                                Submit
+                             </Button>
 
-                        <Button type="submit" variant="shadow" className="bg-black text-white dark:bg-white dark:text-black  " color="black">
-                            Submit
-                        </Button>
+
+
+                              {
+                             serverMessage != null ? <p className= {`${returnState?'text-green-600':'text-red-600'} font-light text-sm`} >{serverMessage}</p>:null
+
+                             }
+
+                             <p className="font-light text-sm">have an account? <Link to='/login' className="underline text-blue-500" >sign in</Link></p>
+                        </div>
+
+
+                       
 
                     </form>
 

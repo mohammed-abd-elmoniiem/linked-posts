@@ -5,12 +5,11 @@ import axios from "axios";
 
 export async function signUp(userdata){
 
-    try{
-        const {data} = await axios.post('https://linked-posts.routemisr.com/users/signup', userdata);
-        return data;
-    } catch (error) {
-        console.log('fgfggf',error.response?.data);
-    }
+    const res =  await axios.post('https://linked-posts.routemisr.com/users/signup', userdata);
+
+    return res
+  
+        
 
     
 }

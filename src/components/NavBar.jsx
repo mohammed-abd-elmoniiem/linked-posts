@@ -4,12 +4,16 @@ import { Link, NavLink } from "react-router"
 import Li from "./li"
 
 import '@fortawesome/fontawesome-free/css/all.css'
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { UserContext } from "../context/userContext";
+import LogOut from "./LogOut";
 
 
 export default function NavBar({setMode, mode}){
+
+    const {user} = useContext(UserContext)
 
     const [isOpen , setIsOpen] = useState(false)
 
@@ -37,7 +41,7 @@ export default function NavBar({setMode, mode}){
     },[isOpen])
   
 
-    const links = ['home','register','login','profile'];
+    const links = ['home','profile'];
 
     function displayUl(){  
             ulRef.current.classList.replace('hidden','flex');
@@ -53,13 +57,16 @@ export default function NavBar({setMode, mode}){
     return(
         <>
 
-        <nav className=" w-full sticky sm:static px-3 py-2   z-10  dark:bg-neutral-800 dark:text-white  shadow
+        <nav className=" w-full sticky sm:sticky sm:top-0 backdrop-blur-2xl px-3 py-2   z-10  dark:bg-neutral-800 dark:text-white   shadow
          shadow-gray-300 dark:shadow-black" >
 
             <div className="container mx-auto  flex justify-between items-center  ">
 
-                 <div className=" uppercase text-2xl ">
+                 <div className=" uppercase text-2xl max-w-1/2 ">
                              <Link to='/home'>social app</Link>
+
+                             <p className="text-overlay overflow-clip w-1/2 text-[12px] text-red-600" >   {user}</p>
+                          
                 
                     </div>
 
@@ -96,30 +103,39 @@ export default function NavBar({setMode, mode}){
 
             
 
-            <ul ref={ulRef} className="h-screen hidden top-0  right-0 w-1/2 absolute sm:static   sm:w-fit  sm:h-fit sm:flex flex-col items-start sm:flex-row gap-3 backdrop-blur-lg bg-gray-200  sm:bg-transparent px-4 py-12 sm:p-2 capitalize font-light sm:border-0 "
-                    onClick={e=>{
-                    hiddenUl(e)
-                        }} 
-            
+            <ul ref={ulRef} className="h-screen hidden top-0  right-0 w-1/2 absolute sm:static   sm:w-fit  sm:h-fit sm:flex flex-col items-start sm:flex-row gap-3 backdrop-blur-lg bg-gray-200 dark:bg-neutral-900 sm:dark:bg-transparent   sm:bg-transparent px-4 py-12 sm:p-2 capitalize font-light sm:border-0 "
+                    onClick={e=>{ hiddenUl(e)  }} 
             >
 
             <li className="self-end sm:hidden">
                 <i className="fa fa-close"></i>
             </li>
-
+ 
             
-             
-             
-            {links.map(link=> <Li key={link} link={link}/>)
+
+            {user==null?
+            <>
+                <Li link={'login'}/>
+                <Li link={'register'}/>
+            </>
+            :
+            <>
+            {links.map(link=> <Li key={link} link={link}/>)}
+              
+                <li className="px-3 py-1 sm:p-0">
+                    <LogOut/>
+                </li>
+            </>
+            
+            
+            
             }
 
-             <li
+            
 
+             <li
                 className=" hidden sm:block "
-                onClick={()=>{
-                    setMode(!mode)
-                }}
-                
+                onClick={()=>{ setMode(!mode);}}    
                 >
                 
                     <i className={`fa ${!mode?'fa-moon':'fa-sun'} `}></i>
