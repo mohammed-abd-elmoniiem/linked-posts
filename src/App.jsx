@@ -5,12 +5,14 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import { HeroUIProvider } from '@heroui/react';
 import { createBrowserRouter } from 'react-router';
 import MainLayout from './layouts/MainLayout';
-import Home from './components/Home';
+import Home from './pages/Home';
 import Register from './components/Register';
 import Login from './components/Login';
-import Profile from './components/Profile';
+
 import { RouterProvider } from 'react-router';
 import UserProvider from './context/userContext';
+import Profile from './pages/Profile';
+import SinglePost from './pages/SinglePost';
 
 
 const routers = createBrowserRouter([
@@ -30,6 +32,9 @@ const routers = createBrowserRouter([
     },
     {
       path:'profile',element:<Profile/>
+    },
+    {
+      path:'single-post/:id',element:<SinglePost/> 
     }
   ]}
 ])

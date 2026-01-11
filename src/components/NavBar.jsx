@@ -65,7 +65,7 @@ export default function NavBar({setMode, mode}){
                  <div className=" uppercase text-2xl max-w-1/2 ">
                              <Link to='/home'>social app</Link>
 
-                             <p className="text-overlay overflow-clip w-1/2 text-[12px] text-red-600" >   {user}</p>
+                             {/* <p className="text-overlay overflow-clip w-1/2 text-[12px] text-red-600" >   {user}</p> */}
                           
                 
                     </div>

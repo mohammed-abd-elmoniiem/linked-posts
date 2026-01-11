@@ -26,11 +26,11 @@ export default function Register() {
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues:{
-            "name": "mohmamed",
-            "email": "fourtinato@ggg.gg",
+            "name": "mohmamed abd elmoniem",
+            "email": "abd.el.moniem@ggg.gg",
             "password": "123456789aA@",
             "rePassword": "123456789aA@",
-            "dateOfBirth": "2025-12-23",
+            "dateOfBirth": "1999-9-21",
             "gender": "male"
     },
         resolver:zodResolver(registerSchema),
