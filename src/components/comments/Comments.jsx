@@ -19,7 +19,7 @@ function Comments({comments,postId,update}) {
     })
     .then(res=>{
       console.log(res.data);
-      update()
+      update(postId)
       commentRef.current.value = ''
     })
     .catch(error=>{
@@ -34,19 +34,23 @@ function Comments({comments,postId,update}) {
     // Handle comment submission logic here
   }
 
+
   return (
     <div className='flex flex-col p-1 rounded-xl text-sm mt-2'>
-        <div className="w-full relative">
-            <input type="text" ref={commentRef} className='w-full  bg-neutral-100  dark:bg-neutral-700 p-2 rounded-md focus:outline-0' placeholder='Write a comment...  ' />
+        <div className="w-full relative flex flex-wrap">
+            <input type="text" ref={commentRef} className=' grow  bg-neutral-100  dark:bg-neutral-700 p-2 rounded-s-md focus:outline-0' placeholder='Write a comment...  ' />
 
-            <button onClick={handleCommentSubmit} className="bg-fuchsia-600 px-3 py-2 rounded-md text-white  absolute bottom-0 right-0">
+            <button onClick={handleCommentSubmit} className="bg-fuchsia-600 px-3 py-2 rounded-e-md text-white  ">
               add comment
             </button>
+
+           
+
+
         </div>
         <div className="w-full flex flex-col gap-2 mt-3">
             {comments.map(comment => (
-                <SingleComment key={comment.id} comment={comment} />
-            
+                <SingleComment key={comment.id} comment={comment}  update={update} />
             ))}
         </div>
 

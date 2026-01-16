@@ -7,7 +7,7 @@ import {zodResolver} from '@hookform/resolvers/zod'
 import { loginSchema } from "../services/LoginSchema";
 import { set, useForm } from 'react-hook-form'
 import { signIn } from "../services/signIn";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { UserContext } from "../context/userContext";
@@ -17,6 +17,8 @@ import { UserContext } from "../context/userContext";
 export default function Login() {
 
     const {setUser}=useContext(UserContext)
+          const navigator =   useNavigate()
+
     
 
 
@@ -50,6 +52,8 @@ export default function Login() {
             localStorage.setItem('token',data.data.token);
 
             setUser(data.data.token)
+            navigator('/home')
+
 
 
         })

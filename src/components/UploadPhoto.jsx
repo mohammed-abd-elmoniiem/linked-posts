@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React from 'react'
 
-function UploadPhoto({update}) {
+
+import { queryClient } from '../App';
+function UploadPhoto() {
 
   function handleFileChange(event) {
     const file = event.target.files[0];
@@ -21,7 +23,7 @@ function UploadPhoto({update}) {
     })
     .then((res)=>{
       console.log(res.data);
-      update()
+      queryClient.invalidateQueries({queryKey:['userData']})
     })
     .catch((err)=>{
       console.log(err)

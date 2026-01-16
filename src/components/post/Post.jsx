@@ -10,7 +10,7 @@ function Post({post ,update}) {
  
 
   return (
-    <div className='rounded-2xl p-5 text-center dark:text-white dark:bg-neutral-800 bg-neutral-50 drop-shadow-2xl overflow-hidden'>
+    <div className='rounded-lg p-5 text-center dark:text-white border border-white dark:border-neutral-800 drop-shadow-2xl overflow-hidden'>
 
       <PostUser userName={post?.user?.name} imgUrl={post?.user?.photo} time={post?.createdAt}/>
 

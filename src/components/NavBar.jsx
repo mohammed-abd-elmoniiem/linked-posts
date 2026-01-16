@@ -113,7 +113,7 @@ export default function NavBar({setMode, mode}){
  
             
 
-            {user==null?
+            {localStorage.getItem('token')==null?
             <>
                 <Li link={'login'}/>
                 <Li link={'register'}/>

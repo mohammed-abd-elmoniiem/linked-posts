@@ -17,7 +17,7 @@ function SinglePost() {
     
    
 
-    async function getPost(){
+    async function getPost(id){
 
         await axios.get(`https://linked-posts.routemisr.com/posts/${id}`,{
             headers:{
@@ -35,12 +35,12 @@ function SinglePost() {
 
 
             useEffect(() => {
-                getPost();
+                getPost(id);
             }, []);
 
 
   return (
-    <div className='mx-auto'>
+    <div className=''>
 
        
      
@@ -48,7 +48,7 @@ function SinglePost() {
      post == null ?
       <p>Loading...</p>
       :
-       <div className='container mx-auto rounded-2xl p-5 text-center dark:bg-neutral-800 dark:text-white drop-shadow-2xl overflow-hidden'>
+       <div className='container mx-auto w-full rounded-2xl p-5 text-center dark:bg-neutral-800 dark:text-white drop-shadow-2xl overflow-hidden'>
 
       <PostUser userName={post?.user?.name} imgUrl={post?.user?.photo} time={post?.createdAt}/>
 

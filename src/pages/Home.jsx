@@ -31526,7 +31526,7 @@ const data = {
 export default function Home(){
 
 
-    const [allPosts, setallPosts] = useState(data.posts)
+    const [allPosts, setallPosts] = useState(null)
 
 
     async function getAllPosts(){
@@ -31557,18 +31557,14 @@ export default function Home(){
 return(
     <>
 
-    <div className="container mx-auto flex flex-col gap-5">
+    <div className="container mx-auto flex flex-col gap-1    py-4">
 
       <CreatePost update={getAllPosts}/>
         {
             allPosts == null?
 
            <>
-                {
-                    allPosts.map(post=>(
-                        <Post key={post._id} post={post}/>
-                    ))
-                }
+                loading
             </> 
 
             :<>
