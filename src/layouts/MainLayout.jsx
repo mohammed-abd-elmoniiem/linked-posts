@@ -13,10 +13,10 @@ export default function MainLayout(){
     return(
         <>
 
-        <main className={`${mode?'dark':''} bg-neutral-100 dark:bg-neutral-900 `}>
+        <main className={`${mode?'dark':''} `}>
             {
                 
-                 <div className="flex flex-col justify-between min-h-screen max-w-4xl mx-auto   px-1 sm:px-0 ">
+                 <div className="flex flex-col justify-between min-h-screen    px-1 sm:px-0  bg-neutral-100 dark:bg-neutral-900">
                 <NavBar />
 
 
