@@ -126,7 +126,7 @@ function CreatePost({update}) {
             }
 
         <div className="relative w-full  flex gap-2 ">
-            <div className="relative  border rounded-full aspect-square centered  text-primary-c overflow-hidden cursor-pointer">
+            <div className="relative  p-2 border rounded-full aspect-square centered  text-primary-c cursor-pointer">
                         <input onChange={eve=>{
                     
                         setImageFile(eve.target.files[0])
@@ -139,7 +139,7 @@ function CreatePost({update}) {
 
             </div>
 
-            <div className="aspect-square border rounded-full centered text-primary-c">
+            <div className="aspect-square border rounded-full p-2 centered text-primary-c">
                 <i className="fa fa-smile text-2xl"></i>
             </div>
 
