@@ -20,6 +20,7 @@ import { Provider } from 'react-redux';
 import { strore } from './redux/store';
 import Redux from './components/Redux';
 import { Toaster } from 'react-hot-toast';
+import UpdatePost from './components/post/UpdatePost';
 
 
 const routers = createBrowserRouter([
@@ -42,6 +43,9 @@ const routers = createBrowserRouter([
     },
     {
       path:'single-post/:id',element:<ProtectingRouting><SinglePost/> </ProtectingRouting> 
+    },
+    {
+      path:'update-post/:id',element:<ProtectingRouting><UpdatePost/></ProtectingRouting>
     }
   ]},
   {path:'/redux',element:<Redux/>

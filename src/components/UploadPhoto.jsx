@@ -3,6 +3,7 @@ import React from 'react'
 
 
 import { queryClient } from '../App';
+import toast from 'react-hot-toast';
 function UploadPhoto() {
 
   function handleFileChange(event) {
@@ -24,9 +25,11 @@ function UploadPhoto() {
     .then((res)=>{
       console.log(res.data);
       queryClient.invalidateQueries({queryKey:['userData']})
+      toast.success('Photo uploaded successfully')
     })
     .catch((err)=>{
       console.log(err)
+      toast.error('Failed to upload photo')
     })
   }
 

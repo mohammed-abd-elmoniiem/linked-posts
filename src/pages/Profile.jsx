@@ -128,10 +128,10 @@ function Profile() {
    
     <div className='dark:text-white mx-auto flex flex-col justify-center  items-center gap-4 text-center py-9'>
         
-        <div className="img w-44 aspect-square rounded-full  outline-2 outline-fuchsia-600 p-2 relative">
+        <div className="img w-44 aspect-square rounded-full  outline-2 text-primary-c   p-2 relative">
             <img className='bg-neutral-300 w-full h-full object-cover rounded-full  overflow-hidden' src={user?.photo} alt="profile img" />
 
-            <div className="absolute -bottom-3 translate-x-1/2 left-1/2 text-fuchsia-800 text-3xl ">
+            <div className="absolute -bottom-3 translate-x-1/2 left-1/2  text-3xl ">
                 <i className="fa fa-camera 
                 "></i>
                 <UploadPhoto/>

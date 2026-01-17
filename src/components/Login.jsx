@@ -11,10 +11,13 @@ import { Link, useNavigate } from "react-router";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { UserContext } from "../context/userContext";
+import toast from "react-hot-toast";
+import { queryClient } from "../App";
 
 
 
 export default function Login() {
+    
 
     const {setUser}=useContext(UserContext)
           const navigator =   useNavigate()
@@ -46,20 +49,25 @@ export default function Login() {
         .then(data=>{
             console.log(data.data.message)
             setServerMessage(data.data.message);
+            toast.success('Logged in successfully')
             setReturnState(true);
 
             // storelocal
             localStorage.setItem('token',data.data.token);
 
             setUser(data.data.token)
-            navigator('/home')
+            navigator('/home');
+
+            queryClient.invalidateQueries(['user']);
+
+
 
 
 
         })
         .catch(error=>{
             console.log(error.response.data.error)
-            setServerMessage(error.response.data.error)
+            toast.error('Error logging in')
             setReturnState(false);
         })
         setIsLoading(false);    

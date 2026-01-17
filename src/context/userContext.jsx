@@ -1,7 +1,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, use, useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 import { queryClient } from '../App';
 
@@ -11,6 +11,7 @@ export const UserContext = createContext();
 
 export default function UserProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [mode ,setMode] = useState(localStorage.getItem('mode') != null ? JSON.parse(localStorage.getItem('mode')) : true );
 
 
 
@@ -30,24 +31,23 @@ export default function UserProvider({ children }) {
     refetchIntervalInBackground: true, 
     refetchOnWindowFocus:true,  
 
+
     select:(data)=>data.data.user,
 
   })
 
-  if(isLoading){
-    console.log('is loading', isLoading)
-  }
-  if(isError){
-    console.log('is error', isError)
-
-  }
+ 
 
  
 
 
 
 
+  // mode change
 
+  useEffect(()=>{
+    localStorage.setItem('mode', JSON.stringify(mode))
+  },[mode])
 
 
   
@@ -68,7 +68,7 @@ export default function UserProvider({ children }) {
   },[status])
 
   return (
-    <UserContext.Provider value={{user,setUser}}>
+    <UserContext.Provider value={{user,setUser,mode,setMode}}>
         {children}
 
     </UserContext.Provider>

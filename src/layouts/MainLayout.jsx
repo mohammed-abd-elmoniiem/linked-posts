@@ -7,20 +7,17 @@ import { UserContext } from "../context/userContext"
 
 
 export default function MainLayout(){
-    const {user} = useContext(UserContext)
-    const [mode, setMode] = useState(true);
+    const {user,mode} = useContext(UserContext)
+    // const [, setMode] = useState(true);
 
     return(
         <>
 
-        <main className={`${mode?'dark':''} `}>
+        <main className={`${mode?'dark':''} bg-neutral-100 dark:bg-neutral-900 `}>
             {
-                user == null ?
-                <>loading</>
-
-                :
-                 <div className="flex flex-col justify-between min-h-screen bg-neutral-100 dark:bg-neutral-900  px-1 sm:px-0 ">
-                <NavBar setMode = {setMode} mode={mode}/>
+                
+                 <div className="flex flex-col justify-between min-h-screen max-w-4xl mx-auto   px-1 sm:px-0 ">
+                <NavBar />
 
 
                 <Outlet/>

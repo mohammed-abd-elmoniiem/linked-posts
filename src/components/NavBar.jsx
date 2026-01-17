@@ -4,22 +4,26 @@ import { Link, NavLink } from "react-router"
 import Li from "./li"
 
 import '@fortawesome/fontawesome-free/css/all.css'
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { UserContext } from "../context/userContext";
 import LogOut from "./LogOut";
 
 
-export default function NavBar({setMode, mode}){
+export default function NavBar(){
 
-    const {user} = useContext(UserContext)
+    const {user,mode ,setMode} = useContext(UserContext)
 
     const [isOpen , setIsOpen] = useState(false)
 
     const ulRef= useRef()
 
     gsap.registerPlugin(useGSAP)
+
+    useEffect(()=>{
+        localStorage.setItem('mode', JSON.stringify(mode))
+    },mode)
 
     
 

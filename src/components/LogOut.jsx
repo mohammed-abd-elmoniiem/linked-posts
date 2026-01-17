@@ -18,7 +18,7 @@ function LogOut() {
 
   return (
 
-      <button className='text-md hover:underline text-amber-400  rounded flex items-center gap-3 group' onClick={handleLogout}>
+      <button className='text-md hover:underline text-primary-c  rounded flex items-center gap-3 group' onClick={handleLogout}>
 
         <span className="">Log out</span>
         <i className="fa fa-sign-out peer"></i>

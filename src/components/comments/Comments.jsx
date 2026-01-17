@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import SingleComment from './SingleComment'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 function Comments({comments,postId,update}) {
 
@@ -21,9 +22,11 @@ function Comments({comments,postId,update}) {
       console.log(res.data);
       update(postId)
       commentRef.current.value = ''
+      toast.success('comment added successfully')
     })
     .catch(error=>{
       console.log(error)
+      toast.error('Failed to add comment')
     })
   }
 
@@ -36,11 +39,11 @@ function Comments({comments,postId,update}) {
 
 
   return (
-    <div className='flex flex-col p-1 rounded-xl text-sm mt-2'>
-        <div className="w-full relative flex flex-wrap">
-            <input type="text" ref={commentRef} className=' grow  bg-neutral-100  dark:bg-neutral-700 p-2 rounded-s-md focus:outline-0' placeholder='Write a comment...  ' />
+    <div className='flex flex-col gap-1 p-1 rounded-xl text-sm mt-2'>
+        <div className="w-full relative flex flex-wrap gap-2" >
+            <input type="text" ref={commentRef} className=' grow  bg-neutral-100  dark:bg-neutral-700 p-2 rounded-md focus:outline-0' placeholder='Write a comment...  ' />
 
-            <button onClick={handleCommentSubmit} className="bg-fuchsia-600 px-3 py-2 rounded-e-md text-white  ">
+            <button onClick={handleCommentSubmit} className="bg-primary-c ml-auto px-3 py-2 rounded-md   ">
               add comment
             </button>
 

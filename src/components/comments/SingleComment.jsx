@@ -22,7 +22,7 @@ function toggleMenu(){
 }
 
   async function handleCommentUpdate(eve) {
-    const commentText = commentRef.current?.value
+  
     console.log('Submitting comment:', commentText)
     await editComment(comment._id,commentText)
     update(comment.post)
@@ -34,9 +34,9 @@ function toggleMenu(){
 console.log(comment)
 
   return (
-    <div className='flex w-full flex-col justify-start gap-5 items-center px-5 py-2 bg-[#ffffff44] dark:bg-neutral-900 rounded-sm '>
+    <div className='flex w-full flex-col justify-start gap-5 items-center px-5 py-2 bg-[#ffffff44] dark:bg-neutral-900/20 border dark:border-neutral-900 border-[#fff4] rounded-sm '>
         <div className="commentCreator w-full flex  justify-start gap-4 relative">
-             <div className="img w-9 aspect-square rounded-full  outline-1 outline-fuchsia-600  relative">
+             <div className="img w-9 aspect-square rounded-full  outline-1 text-primary-c  relative">
                   <img className='bg-neutral-300 w-full h-full object-cover rounded-full  overflow-hidden' src={"https://linked-posts.routemisr.com/uploads/default-profile.png"} alt="profile img" />
 
             </div>
@@ -48,7 +48,7 @@ console.log(comment)
             
               {/* /menu of delete or edite the comment */}
             {
-              comment.commentCreator._id == user._id &&
+              comment.commentCreator._id == user?._id &&
  
               <div className="absolute right-0 top-0 z-100">
                 <button className="edit  text-xl "
@@ -59,7 +59,7 @@ console.log(comment)
                    ...
                   </button>
 
-                <div ref={menuRef} className="scale-0 origin-top duration-300 flex  flex-col gap-3 bg-neutral-50 dark:bg-neutral-900 p-2 rounded-md capitalize text-sm border border-gray-300 dark:border-gray-600 ">
+                <div ref={menuRef} className="scale-0 origin-top duration-300 flex  flex-col gap-3 bg-neutral-50 dark:bg-neutral-900/10 p-2 rounded-md capitalize text-sm border border-gray-300 dark:border-gray-600 ">
 
 
                   <button onClick={async ()=>{
