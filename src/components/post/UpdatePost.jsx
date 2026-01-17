@@ -148,7 +148,7 @@ function UpdatePost() {
             </div>
 
             <div className="w-12 aspect-square border rounded-full  centered text-primary-c">
-                <i className="fa fa-smile text-2xl"></i>l
+                <i className="fa fa-smile text-2xl"></i>
             </div>
 
            <div className="w-12 border rounded-full p-2 centered text-primary-c">
