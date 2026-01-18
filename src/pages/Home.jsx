@@ -67,7 +67,7 @@ return(
 
             :<>
                 {
-                    allPosts.map(post=>(
+                    allPosts?.map(post=>(
                         <Post key={post.id} post={post}  update={()=>queryClient.invalidateQueries(['homePosts'])}  />
                     ))
                 }

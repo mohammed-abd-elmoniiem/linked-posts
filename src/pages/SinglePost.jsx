@@ -10,7 +10,7 @@ import PostReaction from '../components/post/PostReaction';
 import PostUser from '../components/post/PostUser';
 import Comments from '../components/comments/Comments';
 
-function SinglePost() {
+export default function SinglePost() {
     const {id}= useParams();
     const [post, setPost] = useState(null);
     
@@ -57,7 +57,7 @@ function SinglePost() {
 
       <PostReaction comments={post.comments} postId={post._id} />
 
-      <Comments comments={post.comments} postId={post._id} update ={getPost} post={post} />
+      <Comments key={post._id} comments={post.comments} postId={post._id} update ={getPost} post={post} />
 
     </div>
     }
@@ -65,4 +65,3 @@ function SinglePost() {
   )
 }
 
-export default SinglePost

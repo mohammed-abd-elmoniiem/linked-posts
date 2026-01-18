@@ -61,7 +61,7 @@ export default function NavBar(){
     return(
         <>
 
-        <nav className=" w-full sticky sm:sticky sm:top-0 backdrop-blur-2xl px-3 py-2   z-10  dark:bg-neutral-800 dark:text-white   shadow
+        <nav className=" w-full sticky sm:sticky sm:top-0 backdrop-blur-2xl px-3 py-2   z-10   dark:text-white   shadow
          shadow-gray-300 dark:shadow-black" >
 
             <div className="container mx-auto  flex justify-between items-center  ">
@@ -107,7 +107,7 @@ export default function NavBar(){
 
             
 
-            <ul ref={ulRef} className="h-screen hidden top-0  right-0 w-1/2 absolute sm:static   sm:w-fit  sm:h-fit sm:flex flex-col items-start sm:flex-row gap-3 backdrop-blur-lg bg-gray-200 dark:bg-neutral-900 sm:dark:bg-transparent   sm:bg-transparent px-4 py-12 sm:p-2 capitalize font-light sm:border-0 "
+            <ul ref={ulRef} className="h-screen hidden top-0  right-0 w-1/2 absolute sm:static   sm:w-fit  sm:h-fit sm:flex flex-col items-start sm:flex-row gap-3 backdrop-blur-lg bg-[#fff] dark:bg-neutral-900 sm:dark:bg-transparent   sm:bg-transparent px-4 py-12 sm:p-2 capitalize font-light sm:border-0 "
                     onClick={e=>{ hiddenUl(e)  }} 
             >
 

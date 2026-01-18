@@ -72,7 +72,7 @@ export default function Register() {
 
 
 
-                    <form className="w-full rounded-2xl  z-2 p-4   flex flex-col justify-center items-center gap-2 max-w-100  bg-[#ffffff] dark:bg-neutral-900 drop-shadow-lg  border border-white dark:border-0 text-black dark:text-white"
+                    <form className="w-full rounded-2xl  z-2 p-4   flex flex-col justify-center items-center gap-2 max-w-100  bg-[#fff4] dark:bg-neutral-900 drop-shadow-2xl  border border-white dark:border-neutral-800 text-black dark:text-white"
                         onSubmit={handleSubmit(submitting)}
 
                     >
@@ -143,7 +143,7 @@ export default function Register() {
                         </div>
 
                         <div className="flex flex-col w-full items-center  gap-2">
-                             <Button isLoading={isLoading} type="submit" variant="shadow" className="w-fit bg-black not-last: text-white dark:bg-white dark:text-black  px-8 " color="black">
+                             <Button isLoading={isLoading} type="submit" variant="shadow" className="w-fit  not-last: text-white bg-primary-c dark:text-black  px-8 " color="black">
                                 Submit
                              </Button>
 

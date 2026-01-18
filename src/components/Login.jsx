@@ -77,7 +77,7 @@ export default function Login() {
 
     return (
         <>
-            <section className="grow flex flex-col justify-center items-center text-white    ">
+            <section className="grow flex flex-col justify-center items-center text-white   ">
 
                 <div className=" container mx-auto w-full  grow flex items-center justify-center gap-3 py-3 relative ">
 
@@ -85,7 +85,7 @@ export default function Login() {
 
 
 
-                    <form className="w-full rounded-2xl  z-2 p-4   flex flex-col justify-center items-center gap-2 max-w-100  bg-[#ffffff] dark:bg-neutral-900 drop-shadow-lg  border border-white dark:border-0 text-black dark:text-white"
+                    <form className="w-full rounded-2xl  z-2 p-4   flex flex-col justify-center items-center gap-2 max-w-100  bg-[#fff4] dark:bg-neutral-900 drop-shadow-2xl  border border-white dark:border-neutral-800  text-black dark:text-white"
                         onSubmit={handleSubmit(submitting)}
 
                     >
@@ -115,7 +115,7 @@ export default function Login() {
                         
 
 
-                        <Button isLoading={isLoading} type="submit" variant="shadow" className="bg-black w-fit px-8 text-white dark:bg-white dark:text-black  " color="black">
+                        <Button isLoading={isLoading} type="submit" variant="shadow" className=" w-fit px-8 text-white bg-primary-c dark:text-black  " color="black">
                             sign in
                         </Button>
                         {
