@@ -57,7 +57,7 @@ function SinglePost() {
 
       <PostReaction comments={post.comments} postId={post._id} />
 
-      <Comments comments={post.comments} postId={post._id} update ={getPost} />
+      <Comments comments={post.comments} postId={post._id} update ={getPost} post={post} />
 
     </div>
     }

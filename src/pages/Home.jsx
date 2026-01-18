@@ -3,6 +3,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Post from "../components/post/Post";
 import CreatePost from "./CreatePost";
+import { useQuery } from "@tanstack/react-query";
+import { queryClient } from "../App";
 
 
 
@@ -10,42 +12,54 @@ import CreatePost from "./CreatePost";
 export default function Home(){
 
 
-    const [allPosts, setallPosts] = useState(null)
+    // const [allPosts, setallPosts] = useState(null)
 
 
-    async function getAllPosts(){
+   function getAllPosts(){
 
-        await axios.get('https://linked-posts.routemisr.com/posts?limit=20&sort=-createdAt',{
+        return axios.get('https://linked-posts.routemisr.com/posts?limit=20&sort=-createdAt',{
             headers:{
                 token:localStorage.getItem('token')
             }
         })
-        .then((data)=>{
+        // .then((data)=>{
         
-            setallPosts(data.data.posts)
-        })
-        .catch(error=>{
-            console.log(error)
-        })
+        //     setallPosts(data.data.posts)
+        // })
+        // .catch(error=>{
+        //     console.log(error)
+        // })
 
 
     }
 
-    useEffect(()=>{
-        getAllPosts()
+    const{data :allPosts , isError ,isFetched, status} = useQuery({
+      queryKey:['homePosts'],
+      queryFn:getAllPosts,
+      select:(data)=>data.data.posts,
+    })
 
-    },[])
+    
+    if(status == 'success'){
+      console.log("Posts fetched successfully");
+    }
+    if(status == 'loading'){
+      console.log("Loading posts...");
+    }
 
+    if(isError){
 
+      console.log("Error fetching posts");
+    }
 
 return(
     <>
 
     <div className="container mx-auto flex flex-col gap-1    py-4">
 
-      <CreatePost update={getAllPosts}/>
+      <CreatePost update={()=>queryClient.invalidateQueries(['homePosts'])}/>
         {
-            allPosts == null?
+            !isFetched?
 
            <>
                 loading
@@ -54,7 +68,7 @@ return(
             :<>
                 {
                     allPosts.map(post=>(
-                        <Post key={post.id} post={post}  update={getAllPosts}  />
+                        <Post key={post.id} post={post}  update={()=>queryClient.invalidateQueries(['homePosts'])}  />
                     ))
                 }
             </>  
