@@ -10,7 +10,7 @@ function PostUser({userName,imgUrl,time}) {
         <div className="user-info flex flex-col items-start">
            <h3 className="capitalize">{userName}</h3>
 
-           <p className="time text-gray-600 font-light text-[12px]">{time.replace("T", " ").substring(0, 16)}</p>
+           <p className="time text-primary-c font-light text-[12px]">{time.replace("T", " ").substring(0, 16)}</p>
         </div>
        
       </div>

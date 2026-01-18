@@ -53,7 +53,7 @@ function Comments({comments,post,postId,update}) {
         </div>
         <div className="w-full flex flex-col gap-2 mt-3">
             {comments.map(comment => (
-                <SingleComment key={comment.id} comment={comment} post = {post}  update={update} />
+                <SingleComment key={comment._id} comment={comment} post = {post}  update={update} />
             ))}
         </div>
 

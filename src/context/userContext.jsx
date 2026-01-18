@@ -11,7 +11,7 @@ export const UserContext = createContext();
 
 export default function UserProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [mode ,setMode] = useState(localStorage.getItem('mode') != null ? JSON.parse(localStorage.getItem('mode')) : true );
+  const [mode ,setMode] = useState(localStorage.getItem('mode') != null ? JSON.parse(localStorage.getItem('mode')) : 'dark' );
 
 
 
@@ -30,6 +30,7 @@ export default function UserProvider({ children }) {
     refetchOnReconnect:true,
     refetchIntervalInBackground: true, 
     refetchOnWindowFocus:true,  
+    enabled:!!localStorage.getItem('token'),
 
 
     select:(data)=>data.data.user,
