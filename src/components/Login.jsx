@@ -47,7 +47,7 @@ export default function Login() {
         setIsLoading(true);
         await axios.post('https://linked-posts.routemisr.com/users/signin',data)
         .then(data=>{
-            console.log(data.data.message)
+           
             setServerMessage(data.data.message);
             toast.success('Logged in successfully')
             setReturnState(true);

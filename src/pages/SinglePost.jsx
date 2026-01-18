@@ -25,7 +25,7 @@ function SinglePost() {
             }
         })
         .then(res=>{
-            console.log(res.data.post);
+          
             setPost(res.data.post);
         })
         .catch(error=>{

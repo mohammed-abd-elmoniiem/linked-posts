@@ -36,7 +36,7 @@ function UpdatePost() {
             console.log(error)
         })
          
-            // uploadPost(imageFile , bodyRef.current.value)
+            
          
 
          
@@ -47,34 +47,7 @@ function UpdatePost() {
 
 
 
-    // async function uploadPost(image , body) {
-
-
-    //     const formData = new FormData();
-
-    //      if(image!=  null){
-    //                 formData.append('image',image)
-    //      }
-
-    //     formData.append('body',body == '' ? ' ' : body );
-
-    //     await axios.post('https://linked-posts.routemisr.com/posts',formData,{
-    //         headers:{
-    //             token:localStorage.getItem('token')
-    //         }
-    //     })
-    //     .then(res=>{
-    //         console.log(res.data)
-          
-
-    //         setImageFile(null);
-            
-    //     })
-    //     .catch(error=>{
-    //         console.log(error)
-    //     })
-        
-    // }
+  
 
 
 
@@ -86,7 +59,7 @@ function UpdatePost() {
                 }
             })
             .then(res=>{
-                console.log(res.data.post);
+               
                 toast.success('Post fetched successfully');
                 setImage(res.data.post.image);
                 setBody(res.data.post.body);

@@ -7,11 +7,12 @@ import { useNavigate } from 'react-router'
 import EditPostMenu from './EditPostMenu'
 
 function Post({post ,update}) {
+  // console.log('post',post)
 
  
 
   return (
-    <div className='rounded-lg p-5 text-center dark:text-white border border-white dark:border-neutral-800 drop-shadow-2xl overflow-hidden relative'>
+    <div className='rounded-lg p-5 text-center bg-glass dark:text-white border border-white dark:border-neutral-800 drop-shadow-2xl overflow-hidden relative'>
       <EditPostMenu post={post}/>
 
       <PostUser userName={post?.user?.name} imgUrl={post?.user?.photo} time={post?.createdAt}/>
@@ -21,7 +22,7 @@ function Post({post ,update}) {
 
       <PostReaction comments={post.comments} postId={post._id} />
 
-      <Comments comments={post.comments.slice(0, 1)} postId={post._id} update ={update} />
+      <Comments comments={post.comments.slice(0, 1)} postId={post._id} update ={update} post = {post}/>
 
     </div>
   )

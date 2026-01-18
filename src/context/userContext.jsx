@@ -68,7 +68,7 @@ export default function UserProvider({ children }) {
   },[status])
 
   return (
-    <UserContext.Provider value={{user,setUser,mode,setMode}}>
+    <UserContext.Provider value={{user,setUser,mode,setMode ,status}}>
         {children}
 
     </UserContext.Provider>

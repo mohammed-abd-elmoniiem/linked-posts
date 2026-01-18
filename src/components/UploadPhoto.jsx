@@ -1,10 +1,16 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useContext } from 'react'
 
 
 import { queryClient } from '../App';
 import toast from 'react-hot-toast';
+import { UserContext } from '../context/userContext';
+import { set } from 'zod';
 function UploadPhoto() {
+ 
+
+
+  const {setUser} = useContext(UserContext);
 
   function handleFileChange(event) {
     const file = event.target.files[0];
@@ -25,6 +31,12 @@ function UploadPhoto() {
     .then((res)=>{
       console.log(res.data);
       queryClient.invalidateQueries({queryKey:['userData']})
+      .then(()=>{
+        console.log('update pgoto' ,queryClient.getQueriesData({queryKey:['userData']})[0][1].data.user);
+        setUser(queryClient.getQueriesData({queryKey:['userData']})[0][1].data.user);
+        queryClient.invalidateQueries({queryKey:['userPosts']})
+      })
+      
       toast.success('Photo uploaded successfully')
     })
     .catch((err)=>{

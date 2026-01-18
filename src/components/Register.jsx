@@ -40,11 +40,11 @@ export default function Register() {
 
     async function submitting(data) {
 
-        console.log(data);
+     
         setIsLoading(true);
         await axios.post('https://linked-posts.routemisr.com/users/signup', data)
         .then(data=>{
-            console.log(data.data.message)
+            
             setServerMessage(data.data.message)
             setTimeout(()=>{
                navigator('/login')  

@@ -30,11 +30,11 @@ body *{
 
 @layer utilities {
     .bg-glass{
-        background: rgba(255, 255, 255, 0.4);
+        background: #ffffff44;
         backdrop-filter: blur(10px);
     }
     .dark .bg-glass{
-        background: rgba(32, 32, 32, 0.4);
+        background: #20202044;
         backdrop-filter: blur(10px);
     }
 

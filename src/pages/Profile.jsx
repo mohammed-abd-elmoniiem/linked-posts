@@ -5,6 +5,7 @@ import Post from '../components/post/Post'
 import { useQuery } from '@tanstack/react-query'
 import { UserContext } from '../context/userContext'
 import { queryClient } from '../App'
+import { useNavigate } from 'react-router'
 
 
 
@@ -13,23 +14,25 @@ function Profile() {
     // const [UserData, setUserData] = useState(null)
     // const [posts, setPosts] = useState(null)
 
-    const {user} = useContext(UserContext)
+    const navigate = useNavigate();
+
+    const {user ,setUser} = useContext(UserContext)
     
 
 
-    //  const {status, data:userData,error} = useQuery({
-    //     queryKey: ['userData'],
-    //     queryFn:()=> axios('https://linked-posts.routemisr.com/users/profile-data',{
-    //         headers:{
-    //             token:localStorage.getItem('token')
-    //         }
-    //     }),
-    //     refetchOnMount:false,
-    //     refetchOnReconnect:true,
-    //     refetchIntervalInBackground: true, 
-    //     refetchOnWindowFocus:true,
-    //     select:(data)=>data.data.user
-    // });
+     const {status, data:userData,error} = useQuery({
+        queryKey: ['userData'],
+        queryFn:()=> axios('https://linked-posts.routemisr.com/users/profile-data',{
+            headers:{
+                token:localStorage.getItem('token')
+            }
+        }),
+        refetchOnMount:false,
+        refetchOnReconnect:true,
+        refetchIntervalInBackground: true, 
+        refetchOnWindowFocus:true,
+        select:(data)=>data.data.user
+    });
 
    
 
@@ -50,25 +53,7 @@ function Profile() {
 
 
 
-    //  async function getUserData(){
-
-    //     console.log('token',localStorage.getItem('token'))
-
-    //     await axios('https://linked-posts.routemisr.com/users/profile-data',{
-    //         headers:{
-    //             token:localStorage.getItem('token')
-    //         }
-    //     })
-    //     .then((res)=>{
-    //         console.log(res.data);
-    //         setUserData(res.data.user)
-    //         getuserPosts(res.data.user._id);
-    //     })
-    //     .catch((err)=>{
-    //         console.log(err)
-    //     })
-
-    // }
+  
 
  
 
@@ -77,48 +62,10 @@ function Profile() {
    
 
    
-    // async function getuserPosts(id) {
+   
 
-    //      await axios(`https://linked-posts.routemisr.com/users/${id}/posts`,{
-    //         headers:{
-    //             token:localStorage.getItem('token')
-    //         }
-    //     })
-    //     .then((res)=>{
-    //         console.log(res.data);
-    //         setPosts(res.data.posts)
-    //     })
-    //     .catch((err)=>{
-    //         console.log(err)
-    //     })
-        
-    // }
-
-
-    // async function getUserData(){
-
-    //     console.log('token',localStorage.getItem('token'))
-
-    //     await axios('https://linked-posts.routemisr.com/users/profile-data',{
-    //         headers:{
-    //             token:localStorage.getItem('token')
-    //         }
-    //     })
-    //     .then((res)=>{
-    //         console.log(res.data);
-    //         setUserData(res.data.user)
-    //         getuserPosts(res.data.user._id);
-    //     })
-    //     .catch((err)=>{
-    //         console.log(err)
-    //     })
-
-    // }
-
-    // useEffect(()=>{
-    //     getuserPosts(UserData?._id);
-
-    // },[UserData])
+    
+    
 
 
   
@@ -131,26 +78,41 @@ function Profile() {
         <div className="img w-44 aspect-square rounded-full  outline-2 text-primary-c   p-2 relative">
             <img className='bg-neutral-300 w-full h-full object-cover rounded-full  overflow-hidden' src={user?.photo} alt="profile img" />
 
-            <div className="absolute -bottom-3 translate-x-1/2 left-1/2  text-3xl ">
+            <div className="absolute -bottom-3 translate-x-1/2 left-1/2  p-2 text-primary-c text-3xl centered aspect-square border text-neutral-800 rounded-full bg-white dark:bg-neutral-900 group">
                 <i className="fa fa-camera 
                 "></i>
+                <p className="text-sm font-light absolute top-full w-32 bg-white dark:bg-neutral-900    rounded-md text-primary-c border origin-top scale-0 group-hover:scale-100 transition-all duration-300">update profile image</p>
                 <UploadPhoto/>
              </div>
-        </div>
-        <h2 className="uppercase text-3xl ">{user?.name}</h2>
 
-        <p className="">email: {user?.email}</p>
-        <p className="">date of birth: {user?.dateOfBirth}</p>
+             <div className="absolute -top-1 -left-2 p-1 text-primary-c text-lg centered aspect-square border text-neutral-800 rounded-full bg-white dark:bg-neutral-900 group" 
+             onClick={() => navigate('/change-password')
+
+             }>
+                <i className="fa fa-gear"></i>
+                <p className="text-sm font-light absolute top-full w-32 bg-white dark:bg-neutral-900    rounded-md text-primary-c border origin-top scale-0 group-hover:scale-100 transition-all duration-300">Change Password</p>
+             </div>
+        </div>
+        <div className="">
+            <h2 className="uppercase text-3xl ">{user?.name}</h2>
+             <p className="text-sm font-light"> {user?.email}</p>
+             
+             <p className="text-sm font-light"> {user?.dateOfBirth}</p>
+        </div>
+        
+
+       
+        
 
 
         <div className="userPost container mx-auto flex flex-col gap-3">
-            <h3 className="">your posts</h3>
+            
 
             {
                 posts == null ? <p>Loading...</p> : 
                     
                         posts.map(post => {
-                            return <Post post={post} key={post._id} />
+                            return <Post post={post} key={post._id} update={()=>queryClient.invalidateQueries(['userPosts'])} />
                         })
                     
                 

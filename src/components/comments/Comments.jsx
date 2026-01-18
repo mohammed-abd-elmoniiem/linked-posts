@@ -3,7 +3,7 @@ import SingleComment from './SingleComment'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
-function Comments({comments,postId,update}) {
+function Comments({comments,post,postId,update}) {
 
 
   const commentRef = useRef(0)
@@ -19,7 +19,7 @@ function Comments({comments,postId,update}) {
       }
     })
     .then(res=>{
-      console.log(res.data);
+      // console.log(res.data);
       update(postId)
       commentRef.current.value = ''
       toast.success('comment added successfully')
@@ -32,7 +32,7 @@ function Comments({comments,postId,update}) {
 
   function handleCommentSubmit(eve) {
     const commentText = commentRef.current?.value
-    console.log('Submitting comment:', commentText)
+    // console.log('Submitting comment:', commentText)
     addComment(commentText, postId)
     // Handle comment submission logic here
   }
@@ -43,7 +43,7 @@ function Comments({comments,postId,update}) {
         <div className="w-full relative flex flex-wrap gap-2" >
             <input type="text" ref={commentRef} className=' grow  bg-neutral-100  dark:bg-neutral-700 p-2 rounded-md focus:outline-0' placeholder='Write a comment...  ' />
 
-            <button onClick={handleCommentSubmit} className="bg-primary-c ml-auto px-3 py-2 rounded-md   ">
+            <button onClick={handleCommentSubmit} className="bg-primary-c text-white ml-auto px-3 py-2 rounded-md   ">
               add comment
             </button>
 
@@ -53,7 +53,7 @@ function Comments({comments,postId,update}) {
         </div>
         <div className="w-full flex flex-col gap-2 mt-3">
             {comments.map(comment => (
-                <SingleComment key={comment.id} comment={comment}  update={update} />
+                <SingleComment key={comment.id} comment={comment} post = {post}  update={update} />
             ))}
         </div>
 

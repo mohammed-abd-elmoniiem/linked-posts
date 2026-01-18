@@ -10,7 +10,7 @@ export default function EditPostMenu({post}) {
 
 
     const {user} = useContext(UserContext);
-    console.log(post.user._id == user._id)
+    // console.log(post.user._id == user._id)
     if(post.user._id != user._id) return <></>
 
 

@@ -6,7 +6,7 @@ import { UserContext } from '../../context/userContext'
 import { deleleComment } from '../../services/deleteCommentApi';
 import { editComment } from '../../services/editCommentApi';
 
-function SingleComment({comment, update}) {
+function SingleComment({comment,post, update}) {
 
 const{user}  = useContext(UserContext);
 const [ updateComment , setUpdateComment] = useState(false)
@@ -15,26 +15,26 @@ const menuRef = useRef()
   const commentRef = useRef(0)
 
 
-function toggleMenu(){
-  menuRef.current.classList.toggle('scale-100');
-  
+  function toggleMenu(){
+    menuRef.current.classList.toggle('scale-100');
+    
 
-}
+  }
 
   async function handleCommentUpdate(eve) {
   
-    console.log('Submitting comment:', commentText)
-    await editComment(comment._id,commentText)
+  
+    await editComment(comment._id,commentRef.current.value);
     update(comment.post)
     setUpdateComment(false)
    
   }
 
 
-console.log(comment)
+
 
   return (
-    <div className='flex w-full flex-col justify-start gap-5 items-center px-5 py-2 bg-[#ffffff44] dark:bg-neutral-900/20 border dark:border-neutral-900 border-[#fff4] rounded-sm '>
+    <div className='flex w-full flex-col justify-start gap-5 items-center px-5 py-2 bg-[#ffffff77] dark:bg-neutral-900/20 border dark:border-neutral-900 border-[#fff4] rounded-sm '>
         <div className="commentCreator w-full flex  justify-start gap-4 relative">
              <div className="img w-9 aspect-square rounded-full  outline-1 text-primary-c  relative">
                   <img className='bg-neutral-300 w-full h-full object-cover rounded-full  overflow-hidden' src={"https://linked-posts.routemisr.com/uploads/default-profile.png"} alt="profile img" />
@@ -62,14 +62,22 @@ console.log(comment)
                 <div ref={menuRef} className="scale-0 origin-top duration-300 flex  flex-col gap-3 bg-neutral-50 dark:bg-neutral-900/10 p-2 rounded-md capitalize text-sm border border-gray-300 dark:border-gray-600 ">
 
 
+                {
+
+                  post.user._id== user?._id &&
                   <button onClick={async ()=>{
                       toggleMenu();
 
                       await deleleComment(comment._id);
                       update(comment.post);
-                      console.log(comment._id)
+                      // console.log(comment._id)
 
                     }}>delete</button>
+
+                }
+
+
+                  
 
 
                   <button
@@ -93,17 +101,17 @@ console.log(comment)
         </div>
         {
           updateComment?
-            <div className="w-full relative ">
+            <div className="w-full relative flex flex-wrap gap-2 justify-end" >
             
               <input type="text" defaultValue={comment.content}  ref={commentRef} className='w-full  bg-neutral-200  dark:bg-neutral-600 p-2 mb-2 rounded-md focus:outline-0 border border-white dark:border-neutral-500' placeholder='Write a comment...  ' />
 
             
 
-              <button onClick={handleCommentUpdate} className="bg-fuchsia-600 px-3 py-2 rounded-md text-white  ">
+              <button onClick={handleCommentUpdate} className="bg-primary-c px-3 py-2 rounded-md text-white  ">
                 update comment
               </button>
 
-                <button className="  bg-red-600 mx-2 px-3 py-2 rounded-md text-white  "
+                <button className="  text-primary-c border mx-2 px-3 py-2 rounded-md text-white  "
               onClick={() => setUpdateComment(false)}
               >
                 cancel

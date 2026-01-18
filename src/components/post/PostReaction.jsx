@@ -5,7 +5,7 @@ function PostReaction({comments, postId}) {
      const navigator = useNavigate();
      
 
-    console.log(comments.length)
+    
   return (
     <div className='flex justify-between px-8 text-sm font-light capitalize cursor-pointer'>
         <div className="likes flex items-center gap-1">
