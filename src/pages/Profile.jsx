@@ -112,7 +112,9 @@ function Profile() {
             
 
             {
-                posts == null ? <p>Loading...</p> : 
+                posts == null ? 
+                <Loading/>
+                : 
                     
                         posts.map(post => {
                             return <Post post={post} key={post._id} update={()=>queryClient.invalidateQueries(['userPosts'])} />
