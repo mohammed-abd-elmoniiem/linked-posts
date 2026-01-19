@@ -5,6 +5,8 @@ import Post from "../components/post/Post";
 import CreatePost from "./CreatePost";
 import { useQuery } from "@tanstack/react-query";
 import { queryClient } from "../App";
+import Loading from "../components/Loading";
+import Error from "../components/Error";
 
 
 
@@ -56,16 +58,25 @@ return(
     <>
 
     <div className="container mx-auto flex flex-col gap-1    py-4">
+     
 
       <CreatePost update={()=>queryClient.invalidateQueries(['homePosts'])}/>
+
         {
-            !isFetched?
+          !isFetched &&
 
-           <>
-                loading
-            </> 
+         
+                <Loading/>
+          
+        }
 
-            :<>
+        {
+          isError &&<>
+          <Error/>
+          </>
+        }
+        {
+            <>
                 {
                     allPosts?.map(post=>(
                         <Post key={post.id} post={post}  update={()=>queryClient.invalidateQueries(['homePosts'])}  />

@@ -9,6 +9,7 @@ import PostContent from '../components/post/PostContent';
 import PostReaction from '../components/post/PostReaction';
 import PostUser from '../components/post/PostUser';
 import Comments from '../components/comments/Comments';
+import Loading from '../components/Loading';
 
 export default function SinglePost() {
     const {id}= useParams();
@@ -46,7 +47,7 @@ export default function SinglePost() {
      
      { 
      post == null ?
-      <p>Loading...</p>
+      <Loading/>
       :
        <div className='container mx-auto w-full rounded-2xl p-5 text-center dark:bg-neutral-800 dark:text-white drop-shadow-2xl overflow-hidden'>
 

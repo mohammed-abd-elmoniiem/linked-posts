@@ -37,7 +37,7 @@ const menuRef = useRef()
     <div className='flex w-full flex-col justify-start gap-5 items-center px-5 py-2 bg-[#ffffff77] dark:bg-[#0001] border dark:border-neutral-700 border-[#fff4] rounded-lg drop-shadow-lg'>
         <div className="commentCreator w-full flex  justify-start gap-4 relative">
              <div className="img w-9 aspect-square rounded-full  outline-1 text-primary-c  relative">
-                  <img className='bg-neutral-300 w-full h-full object-cover rounded-full  overflow-hidden' src={"https://linked-posts.routemisr.com/uploads/default-profile.png"} alt="profile img" />
+                  <img className=' bg-neutral-300 w-full h-full object-cover rounded-full  overflow-hidden' src={"https://linked-posts.routemisr.com/uploads/default-profile.png"} alt="profile img" />
 
             </div>
             <div className="flex flex-col items-start">

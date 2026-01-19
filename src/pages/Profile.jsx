@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query'
 import { UserContext } from '../context/userContext'
 import { queryClient } from '../App'
 import { useNavigate } from 'react-router'
+import Loading from '../components/Loading'
 
 
 
@@ -70,13 +71,15 @@ function Profile() {
 
   
 
-  return (
-
-   
-    <div className='dark:text-white mx-auto flex flex-col justify-center  items-center gap-4 text-center py-9'>
+  return (<>
+   {
+        user == null ?
+        <Loading/> 
+        :
+         <div className='dark:text-white mx-auto flex flex-col justify-center  items-center gap-4 text-center py-9'>
         
         <div className="img w-44 aspect-square rounded-full  outline-2 text-primary-c   p-2 relative">
-            <img className='bg-neutral-300 w-full h-full object-cover rounded-full aspect-square   overflow-hidden' src={user?.photo} alt="profile img" />
+            <img className='bg-neutral-300 w-full h-full object-cover rounded-full aspect-square   overflow-hidden animating' src={user?.photo} alt="profile img" />
 
             <div className="absolute -bottom-3 translate-x-1/2 left-1/2  p-2 text-primary-c text-3xl centered aspect-square border text-neutral-800 rounded-full bg-white dark:bg-neutral-900 group">
                 <i className="fa fa-camera 
@@ -120,6 +123,13 @@ function Profile() {
         </div>
 
     </div>
+    }
+
+  </>
+
+   
+   
+   
   )
 }
 
